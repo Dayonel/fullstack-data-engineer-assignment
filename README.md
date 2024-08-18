@@ -97,3 +97,44 @@ Please complete the assignment within one week of receiving it.
 ## Notes/Considerations
 
 [Add your notes, considerations, or things you wanted to do but didn't have time for here]
+
+Live version can be found here: https://fullstack-data-engineer-assignment.vercel.app/
+
+The pull request used to complete this task can be found here: https://github.com/Dayonel/fullstack-data-engineer-assignment/pull/1
+
+*NOTE: I am aware of the slow performance during pagination. Given more time, I would have implemented performance optimizations.*
+
+![image](https://github.com/user-attachments/assets/0f3b4852-d474-48f7-b59e-527a27c0951d)
+
+**Task 1. User Engagement Table Improvement**
+
+- I defined a DTO (Data Transfer Object) that represents how we are going to use the data in our application. 
+- Added 2 new fields: userName and courseTitle.
+- Applied the Companion object pattern to convert an entity to a DTO having a type and object literals with the same name and a helper function.
+- I relied on mongoDB aggregation framework to do the work on database side and saving roundtrips.
+- I implemented pagination to minimize data transfer and allowing to refresh the page staying on the same page.
+- I modified the table to show user name and course title in the table instead of ids.
+
+**Task 2. Recommendation Engine Effectiveness**
+For this task I first defined what is effectiveness, in this case is how often a recommended course is engaged. To achieve this I calculated the number of followed recommendations per user and course by comparing recommendations collection with engagements collection.
+- I created a new endpoint in the /api `metrics` that calculates the percentage of followed recommendations.
+- I used `shacdn` charts to represent the metric in a chart.
+
+**Task 3. Course Performance Analysis**
+For this task I determined the best and worst courses based on AVG of time spent and sorted them.
+- I created a new endpoint in the /api `course-ranking` that returns an object with 2 arrays: bestCourses and worstCourses.
+- I used 2 tables to represent the best 3 and worst 3 courses as well as the time spent.
+
+**Task 4. Production Readiness**
+For this task I implemented `unit tests` and `end to end tests` to guarantee code coverage and prevent bugs.
+- I added try-catch to the /api endpoints to handle errors.
+- I added basic logging in the server side to avoid exposing sensitive information.
+- I added a bundle size analyzer to check the sizes of the imported modules.
+- I build the app in production mode to test it.
+- I ran lighthouse to analyze the app performance.
+
+**Further improvements**
+- In a real world app the `.env` would be removed from source control.
+- To speed up queries, indexed can be added to the mongodb database.
+- Pagespeed insights can be frequently used to monitor performance on different pages.
+- Caching can be used for accessing frequent data.
